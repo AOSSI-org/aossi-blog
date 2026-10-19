@@ -5,7 +5,6 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 ErrorDocument 404 /404.html
 
-<IfModule mod_mime.c>
-  AddType application/rss+xml .xml
-  AddType application/rss+xml rss.xml
-</IfModule>
+<Files "rss.xml">
+  ForceType application/rss+xml
+</Files>
