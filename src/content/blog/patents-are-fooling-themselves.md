@@ -55,6 +55,8 @@ What I am claiming is that one well-documented case points one way. Expiry wasn'
 
 If you think I'm wrong, tell me where. I'd rather have this idea broken now than find out later. Please feel free to engage.
 
+Reply through [aossi.org/contact](https://aossi.org/contact).
+
 ## Sources
 
 - Fused filament fabrication (FDM origin, popularity, patent expiry, price drop): https://en.wikipedia.org/wiki/Fused_filament_fabrication
