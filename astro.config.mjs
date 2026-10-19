@@ -9,6 +9,8 @@ export default defineConfig({
 	build: { format: 'directory' },
 	integrations: [sitemap()],
 	markdown: {
+		// Keep post text byte-for-byte: no automatic curly quotes or dashes.
+		smartypants: false,
 		shikiConfig: { theme: 'github-dark' },
 	},
 });
