@@ -1,0 +1,44 @@
+---
+import Base from './Base.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+
+const { title, description, pubDate, updatedDate, author, credits, slug } = Astro.props;
+const url = new URL(`/${slug}/`, Astro.site).toString();
+const jsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'BlogPosting',
+	headline: title,
+	description,
+	datePublished: pubDate.toISOString(),
+	...(updatedDate ? { dateModified: updatedDate.toISOString() } : {}),
+	author: { '@type': 'Person', name: author },
+	publisher: { '@type': 'Organization', name: 'AOSSI', url: 'https://aossi.org/' },
+	mainEntityOfPage: url,
+	url,
+	image: new URL(`/og/${slug}.png`, Astro.site).toString(),
+};
+---
+
+<Base title={title} description={description} image={`/og/${slug}.png`} type="article" publishedTime={pubDate} author={author}>
+	<script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLd)} />
+	<article class="h-entry">
+		<p class="eyebrow">Essay</p>
+		<h1 class="p-name">{title}</h1>
+		<p class="meta">
+			By <span class="p-author h-card">{author}</span> · <FormattedDate date={pubDate} />
+			{updatedDate && <> · Updated <FormattedDate date={updatedDate} /></>}
+		</p>
+		<a class="u-url" href={url} hidden>{url}</a>
+		<div class="prose e-content">
+			<slot />
+		</div>
+		{credits && credits.length > 0 && (
+			<section class="credits">
+				<h2>Image credits</h2>
+				<ul>
+					{credits.map((c) => <li>{c.image}: <a href={c.source}>{c.credit}</a></li>)}
+				</ul>
+			</section>
+		)}
+	</article>
+</Base>

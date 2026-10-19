@@ -1,0 +1,24 @@
+# blog.aossi.org welcomes all crawlers: search engines, AI search,
+# and AI training crawlers alike.
+User-agent: *
+Allow: /
+
+# Explicitly allowed AI crawlers (same rule as above, listed for clarity)
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: anthropic-ai
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: PerplexityBot
+User-agent: CCBot
+User-agent: Meta-ExternalAgent
+User-agent: Bytespider
+User-agent: Amazonbot
+User-agent: cohere-ai
+User-agent: xAI-Bot
+Allow: /
+
+Sitemap: https://blog.aossi.org/sitemap-index.xml
