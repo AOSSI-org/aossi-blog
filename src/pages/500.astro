@@ -1,0 +1,11 @@
+---
+// Server error page. Served by .htaccess for 500, 502 and 503 (ErrorDocument /500.html).
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Something went wrong" description="Server error.">
+	<meta slot="head" name="robots" content="noindex" />
+	<h1>Something went wrong</h1>
+	<p>This page couldn't load because of a server problem.</p>
+	<p><a href="/">Back to the post list</a></p>
+</Base>
