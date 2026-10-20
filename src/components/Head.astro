@@ -9,9 +9,11 @@ interface Props {
 	type?: 'website' | 'article';
 	publishedTime?: Date;
 	author?: string;
+	// Set on error pages (403/404/500): they are noindex and must not declare a canonical URL.
+	noCanonical?: boolean;
 }
 
-const { title, description, image = '/og/default.png', type = 'website', publishedTime, author } = Astro.props;
+const { title, description, image = '/og/default.png', type = 'website', publishedTime, author, noCanonical = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const imageURL = new URL(image, Astro.site);
 const fullTitle = title === SITE_TITLE ? title : `${title} | ${SITE_TITLE}`;
@@ -21,7 +23,7 @@ const fullTitle = title === SITE_TITLE ? title : `${title} | ${SITE_TITLE}`;
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="generator" content={Astro.generator} />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="canonical" href={canonical} />
+{!noCanonical && <link rel="canonical" href={canonical} />}
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href={new URL('rss.xml', Astro.site)} />
 <title>{fullTitle}</title>
