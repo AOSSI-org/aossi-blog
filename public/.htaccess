@@ -3,6 +3,7 @@ RewriteEngine On
 RewriteCond %{HTTPS} !=on
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+ErrorDocument 403 /403.html
 ErrorDocument 404 /404.html
 ErrorDocument 500 /500.html
 ErrorDocument 502 /500.html
@@ -20,4 +21,8 @@ ErrorDocument 503 /500.html
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
   Header always set X-Frame-Options "DENY"
   Header always set Cross-Origin-Opener-Policy "same-origin"
+  # Error pages stay out of search results, even when fetched directly with a 200 (pages also carry meta robots noindex).
+  <FilesMatch "^(403|404)\.html$">
+    Header always set X-Robots-Tag "noindex"
+  </FilesMatch>
 </IfModule>

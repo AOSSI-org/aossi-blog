@@ -1,0 +1,10 @@
+---
+// Access-denied page. Served by .htaccess for 403 (ErrorDocument /403.html).
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Access denied" description="Access denied.">
+	<meta slot="head" name="robots" content="noindex" />
+	<h1>Access denied</h1>
+	<p>You don't have permission to view this page. Go to the <a href="/">post list</a>.</p>
+</Base>
